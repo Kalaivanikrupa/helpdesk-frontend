@@ -27,8 +27,8 @@ function CreateTicket({ user, onTicketCreated }) {
     };
 
     try {
-      // THE FIX: URL-la `userName` parameter-ah add pannalaam
-      const response = await fetch(`http://localhost:8080/api/tickets?userName=${user.name}`, {
+      // Changed localhost to Render URL and kept the userName parameter
+      const response = await fetch(`https://helpdesk-backend-ektm.onrender.com/api/tickets?userName=${user.name}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +53,7 @@ function CreateTicket({ user, onTicketCreated }) {
       }
     } catch (error) {
       console.error("Network Error:", error);
-      alert("Network error! Check if backend is running.");
+      alert("Network error! Check if backend is running on Render.");
     } finally {
       setIsSubmitting(false);
     }

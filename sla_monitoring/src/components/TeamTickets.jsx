@@ -11,13 +11,13 @@ function TeamTickets({ user }) {
 
     try {
       setLoading(true);
-      // Directly fetching by domain (Endpoint #3)
-      const ticketRes = await fetch(`http://localhost:8080/api/tickets/domain/${user.domain}`);
+      // Directly fetching by domain (Endpoint #3) - Updated to Render Link
+      const ticketRes = await fetch(`https://helpdesk-backend-ektm.onrender.com/api/tickets/domain/${user.domain}`);
       const ticketData = await ticketRes.json();
       setTickets(ticketData);
 
-      // Available supporters
-      const supportRes = await fetch(`http://localhost:8080/api/users/available-support/${user.domain}`);
+      // Available supporters - Updated to Render Link
+      const supportRes = await fetch(`https://helpdesk-backend-ektm.onrender.com/api/users/available-support/${user.domain}`);
       const supportData = await supportRes.json();
       setSupporters(supportData);
       
@@ -39,7 +39,8 @@ function TeamTickets({ user }) {
     try {
       // Backend-la '/assign' endpoint illathathala, we use '/manager-action'
       // action=APPROVE helps in both fresh assign and transfer after decline.
-      const url = `http://localhost:8080/api/tickets/${ticketId}/manager-action?action=APPROVE&newSupport=${supporterName}`;
+      // Updated to Render Link
+      const url = `https://helpdesk-backend-ektm.onrender.com/api/tickets/${ticketId}/manager-action?action=APPROVE&newSupport=${supporterName}`;
       
       const res = await fetch(url, {
         method: "PUT",

@@ -10,7 +10,8 @@ function MyTickets({ user }) {
     
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:8080/api/tickets");
+      // Changed localhost to Render URL
+      const res = await fetch("https://helpdesk-backend-ektm.onrender.com/api/tickets");
       const data = await res.json();
       
       // LOGIC: Login panni irukura user create panna tickets-ah mattum filter panrom

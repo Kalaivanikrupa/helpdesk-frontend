@@ -9,10 +9,10 @@ function TeamAssignTickets({ user }) {
     if (!user || !user.name) return;
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:8080/api/tickets");
+      // Changed to Render URL
+      const res = await fetch("https://helpdesk-backend-ektm.onrender.com/api/tickets");
       const data = await res.json();
       
-      // Filter: Intha support person-ku assign aagi, innum resolve aagatha tickets
       const myTickets = data.filter(t => 
         t.assignedTo === user.name && 
         t.status !== "Resolved"
@@ -32,7 +32,8 @@ function TeamAssignTickets({ user }) {
   // 2. Resolve Ticket Logic (Backend Sync)
   const resolveTicket = async (id) => {
     try {
-      const res = await fetch(`http://localhost:8080/api/tickets/${id}/resolve`, {
+      // Changed to Render URL
+      const res = await fetch(`https://helpdesk-backend-ektm.onrender.com/api/tickets/${id}/resolve`, {
         method: "PUT"
       });
       if (res.ok) {
@@ -53,8 +54,8 @@ function TeamAssignTickets({ user }) {
     }
 
     try {
-      // Backend status-ah "Awaiting Manager Approval" nu mathum
-      const res = await fetch(`http://localhost:8080/api/tickets/${id}/decline?reason=${reason}`, {
+      // Changed to Render URL
+      const res = await fetch(`https://helpdesk-backend-ektm.onrender.com/api/tickets/${id}/decline?reason=${reason}`, {
         method: "PUT"
       });
       if (res.ok) {

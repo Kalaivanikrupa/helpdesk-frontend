@@ -6,7 +6,8 @@ function SlaDashboard({ user }) {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch("http://localhost:8080/api/tickets");
+        // Changed to Render URL
+        const res = await fetch("https://helpdesk-backend-ektm.onrender.com/api/tickets");
         const data = await res.json();
         
         const domainTickets = data.filter(t => t.domain.toLowerCase() === user.domain.toLowerCase());

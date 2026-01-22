@@ -5,8 +5,8 @@ function UsersList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Backend @GetMapping("/api/users") logic connect aagum
-    fetch("http://localhost:8080/api/users")
+    // URL changed to Render backend
+    fetch("https://helpdesk-backend-ektm.onrender.com/api/users")
       .then(res => res.json())
       .then(data => {
         setUsers(data);

@@ -11,8 +11,8 @@ function DeclineRequests({ user }) {
     if (!user) return;
     try {
       setLoading(true);
-      // Fetch tickets with status "Awaiting Manager Approval"
-      const ticketRes = await fetch("http://localhost:8080/api/tickets");
+      // Fetch tickets with status "Awaiting Manager Approval" - Updated to Render
+      const ticketRes = await fetch("https://helpdesk-backend-ektm.onrender.com/api/tickets");
       const ticketData = await ticketRes.json();
       
       const declined = ticketData.filter(t => 
@@ -21,8 +21,8 @@ function DeclineRequests({ user }) {
       );
       setTickets(declined);
 
-      // Fetch available support members for transfer dropdown
-      const supportRes = await fetch(`http://localhost:8080/api/users/available-support/${user.domain}`);
+      // Fetch available support members for transfer dropdown - Updated to Render
+      const supportRes = await fetch(`https://helpdesk-backend-ektm.onrender.com/api/users/available-support/${user.domain}`);
       const supportData = await supportRes.json();
       setSupporters(supportData);
       
@@ -42,8 +42,8 @@ function DeclineRequests({ user }) {
     const newSupport = transferSelect[ticketId] || ""; // Empty-ah ponalum backend fallback handle pannum
 
     try {
-      // Backend mapping: @PutMapping("/{id}/manager-action")
-      const res = await fetch(`http://localhost:8080/api/tickets/${ticketId}/manager-action?action=${action}&newSupportName=${newSupport}`, {
+      // Backend mapping: @PutMapping("/{id}/manager-action") - Updated to Render
+      const res = await fetch(`https://helpdesk-backend-ektm.onrender.com/api/tickets/${ticketId}/manager-action?action=${action}&newSupportName=${newSupport}`, {
         method: "PUT"
       });
 

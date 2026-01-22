@@ -7,7 +7,8 @@ function EscalatedTickets({ user }) {
   useEffect(() => {
     const fetchEscalated = async () => {
       try {
-        const res = await fetch("http://localhost:8080/api/tickets");
+        // Changed to Render URL
+        const res = await fetch("https://helpdesk-backend-ektm.onrender.com/api/tickets");
         const data = await res.json();
         
         // Backend Logic: Status 'Escalated' and match Manager's domain

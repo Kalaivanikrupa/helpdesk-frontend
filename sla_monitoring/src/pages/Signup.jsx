@@ -3,7 +3,7 @@ import { useState } from "react";
 function Signup({ switchToLogin }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); // Password added
+  const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [domain, setDomain] = useState("");
 
@@ -17,13 +17,14 @@ function Signup({ switchToLogin }) {
       name,
       email,
       password,
-      role: role.toUpperCase(), // Backend-ku "USER", "SUPPORT" nu pogum
-      domain: domain.toLowerCase(), // "software", "hardware"
+      role: role.toUpperCase(),
+      domain: domain.toLowerCase(),
       available: true
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/signup", {
+      // Inga thaan namma Render URL-ah kuduthurukom
+      const response = await fetch("https://helpdesk-backend-ektm.onrender.com/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
@@ -36,7 +37,7 @@ function Signup({ switchToLogin }) {
         alert("Signup failed. Email already exists or server error.");
       }
     } catch (err) {
-      alert("Backend server running-la illai!");
+      alert("Backend server (Render) connect aagala!");
     }
   };
 
@@ -65,7 +66,7 @@ function Signup({ switchToLogin }) {
       )}
 
       <button onClick={handleSignup}>Signup</button>
-      <p onClick={switchToLogin}>Already have an account? Login</p>
+      <p style={{cursor: 'pointer'}} onClick={switchToLogin}>Already have an account? Login</p>
     </div>
   );
 }

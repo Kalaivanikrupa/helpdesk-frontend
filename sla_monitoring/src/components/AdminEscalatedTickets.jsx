@@ -4,7 +4,8 @@ function AdminEscalatedTickets() {
   const [escalated, setEscalated] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/tickets")
+    // URL changed to Render backend
+    fetch("https://helpdesk-backend-ektm.onrender.com/api/tickets")
       .then(res => res.json())
       .then(data => {
         // Only show escalated tickets

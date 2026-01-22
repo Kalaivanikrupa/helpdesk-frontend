@@ -12,7 +12,8 @@ function UserDashboard({ user, onLogout }) {
   const fetchTickets = async () => {
     if (!user) return;
     try {
-      const res = await fetch("http://localhost:8080/api/tickets");
+      // Changed localhost to Render URL
+      const res = await fetch("https://helpdesk-backend-ektm.onrender.com/api/tickets");
       const data = await res.json();
       // Current user create panna tickets mattum
       const myTickets = data.filter(t => t.createdBy === user.name);
@@ -33,7 +34,6 @@ function UserDashboard({ user, onLogout }) {
 
   return (
     <div className="dashboard-container" style={{ display: "flex" }}>
-      {/* Sidebar-ku onLogout anupuroam */}
       <UserSidebar setPage={setPage} onLogout={onLogout} />
       
       <div className="main-content" style={{ flex: 1 }}>

@@ -11,7 +11,8 @@ function Login({ onLogin, switchToSignup }) {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
+      // Changed localhost to Render URL
+      const response = await fetch("https://helpdesk-backend-ektm.onrender.com/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -25,7 +26,7 @@ function Login({ onLogin, switchToSignup }) {
         alert("Invalid Email or Password!");
       }
     } catch (err) {
-      alert("Backend connect aagala!");
+      alert("Backend connect aagala! (Render server issues)");
     }
   };
 
@@ -35,7 +36,7 @@ function Login({ onLogin, switchToSignup }) {
       <input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
       <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
       <button onClick={handleLogin}>Login</button>
-      <p onClick={switchToSignup}>New user? Signup</p>
+      <p style={{cursor: 'pointer'}} onClick={switchToSignup}>New user? Signup</p>
     </div>
   );
 }
